@@ -42,7 +42,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   };
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background bg-[radial-gradient(ellipse_at_top,_rgba(139,92,246,0.08),_transparent_60%),radial-gradient(ellipse_at_bottom,_rgba(56,189,248,0.08),_transparent_60%)]">
       <Sidebar
         isMobileSidebarOpen={isMobileSidebarOpen}
         toggleMobileSidebar={toggleMobileSidebar}
