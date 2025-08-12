@@ -65,13 +65,13 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="fixed left-0 top-0 z-30 hidden h-screen w-64 border-r bg-card md:block">
+      <aside className="fixed left-0 top-0 z-30 hidden h-screen w-64 border-r bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/40 md:block">
         <div className="flex h-full flex-col">
           {/* Brand */}
-          <div className="flex h-14 items-center border-b px-4 md:h-16">
+          <div className="flex h-16 items-center border-b px-4">
             <Link href="/">
-              <div className="flex cursor-pointer items-center rounded-md px-1 py-1 hover:bg-accent">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
+              <div className="flex cursor-pointer items-center rounded-lg px-2 py-1 hover:bg-accent">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
                   <Bot className="h-5 w-5" />
                 </div>
                 <span className="ml-2 text-lg font-semibold">AiTwin</span>
@@ -81,8 +81,8 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
 
           {/* Navigation */}
           <ScrollArea className="flex-1">
-            <nav className="no-scrollbar px-2 py-3">
-              <ul className="space-y-1">
+            <nav className="no-scrollbar px-3 py-3">
+              <ul className="space-y-1.5">
                 {navItems.map((item) => {
                   const active = location === item.href || (item.href === "/dashboard" && location === "/");
                   return (
@@ -91,7 +91,6 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
                         <div className={cnItem(active)}>
                           <span className={cnIcon(active)}>{item.icon}</span>
                           <span className="truncate">{item.text}</span>
-                          {active && <span className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded bg-primary" />}
                         </div>
                       </Link>
                     </li>
@@ -101,7 +100,7 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
 
               <div className="mt-6 border-t pt-3" />
               <div className="px-2 pb-3">
-                <Button variant="outline" className="w-full justify-start" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                <Button variant="outline" className="w-full justify-start rounded-xl" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                   {theme === "dark" ? (
                     <>
                       <Sun className="mr-2 h-4 w-4" /> Светлая тема
@@ -120,7 +119,7 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
 
       {/* Mobile drawer via Sheet */}
       <Sheet open={mobileSidebarOpen} onOpenChange={handleToggleMobileSidebar}>
-        <SheetContent side="left" className="w-3/4 max-w-xs p-0">
+        <SheetContent side="left" className="w-3/4 max-w-xs p-0 bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-card/60">
           <div className="flex h-14 items-center justify-between border-b px-4 md:h-16">
             <div className="flex items-center">
               <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -135,7 +134,7 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
 
           <ScrollArea className="h-[calc(100vh-56px)] md:h-[calc(100vh-64px)]">
             <nav className="no-scrollbar px-4 py-4">
-              <ul className="space-y-1">
+              <ul className="space-y-1.5">
                 {navItems.map((item) => {
                   const active = location === item.href || (item.href === "/dashboard" && location === "/");
                   return (
@@ -149,7 +148,6 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
                       >
                         <span className={cnIcon(active)}>{item.icon}</span>
                         <span>{item.text}</span>
-                        {active && <span className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded bg-primary" />}
                       </div>
                     </li>
                   );
@@ -157,7 +155,7 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
               </ul>
 
               <div className="mt-4 border-t pt-4">
-                <Button variant="outline" className="w-full justify-start" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                <Button variant="outline" className="w-full justify-start rounded-xl" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                   {theme === "dark" ? (
                     <>
                       <Sun className="mr-2 h-4 w-4" /> Светлая тема
@@ -178,12 +176,12 @@ export function Sidebar({ isMobileSidebarOpen, toggleMobileSidebar }: SidebarPro
 }
 
 function cnItem(active: boolean, isMobile = false) {
-  return `relative flex items-center rounded-lg px-2 py-2 transition-colors ${
-    active ? "bg-accent" : "hover:bg-muted/50"
+  return `relative flex items-center rounded-xl px-3 py-2 transition-colors ${
+    active ? "bg-primary/10 text-primary ring-1 ring-primary/20" : "hover:bg-muted/60"
   } ${isMobile ? "border" : ""}`;
 }
 function cnIcon(active: boolean) {
-  return `mr-2 flex h-8 w-8 items-center justify-center rounded-md ${active ? "bg-primary/10 text-primary" : "bg-muted/60"}`;
+  return `mr-2 flex h-8 w-8 items-center justify-center rounded-lg ${active ? "bg-primary/15 text-primary" : "bg-muted/60"}`;
 }
 
 // SidebarItem оставлен для совместимости экспорта

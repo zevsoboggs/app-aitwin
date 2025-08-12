@@ -79,8 +79,8 @@ export function Header({ toggleMobileSidebar, pageTitle }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-20 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-14 max-w-screen-2xl items-center gap-3 px-3 md:h-16 md:px-6">
+    <header className="sticky top-0 z-20 bg-transparent">
+      <div className="mx-auto mt-2 flex h-14 max-w-screen-2xl items-center gap-3 rounded-xl border bg-card/60 px-3 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/40 md:h-16 md:px-6">
         {/* Mobile menu button */}
         <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMobileSidebar} aria-label="Открыть меню">
           <Menu className="h-6 w-6" />
@@ -88,7 +88,7 @@ export function Header({ toggleMobileSidebar, pageTitle }: HeaderProps) {
 
         {/* Brand */}
         <Link href="/">
-          <div className="mr-1.5 flex cursor-pointer items-center rounded-md px-1 py-1 hover:bg-accent">
+          <div className="mr-1.5 flex cursor-pointer items-center rounded-lg px-2 py-1 hover:bg-accent">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">A</div>
             <span className="ml-2 hidden text-base font-semibold md:block">AiTwin</span>
           </div>
@@ -99,7 +99,7 @@ export function Header({ toggleMobileSidebar, pageTitle }: HeaderProps) {
           <h1 className="hidden truncate text-lg font-semibold md:block md:text-xl">{determinePageTitle()}</h1>
           <div className="relative ml-auto hidden w-full max-w-sm md:block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input placeholder="Поиск... (Ctrl/⌘+K)" className="pl-9" onFocus={() => setOpenCmd(true)} />
+            <Input placeholder="Поиск... (Ctrl/⌘+K)" className="rounded-full pl-9" onFocus={() => setOpenCmd(true)} />
           </div>
         </div>
 
